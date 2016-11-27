@@ -2,13 +2,20 @@
 # find this on github ( https://github.com/h3knix/steamshortcutconverter/ )
 
 $basepath = $env:USERPROFILE +"\Desktop\"
+
 $convertedpath = $basepath +"converted_shortcuts"
-New-Item -ItemType Directory -Force -Path $convertedpath
+New-Item -ItemType Directory -Force -Path $convertedpath | Out-Null
 $convertedpath = $convertedpath +"\"
+
 $Shell = New-Object -ComObject ("WScript.Shell")
-Write-Host "Running from" $basepath
+
+Write-Host "Running in" $basepath
+Write-Host "----------------------------------"
+
+$found = 0
 Get-ChildItem $basepath -Filter *.url | 
 Foreach-Object {
+	$found++
 	$origname = $_.Name
 	$name = $origname.split('.')
 	$name = $name[0..($name.length-2)]
@@ -39,5 +46,10 @@ Foreach-Object {
 	$ShortCut.Save()
 	
 	Write-Host "----------------------------------"
+}
+if ( $found ) {
+	Write-Host $found "file(s) converted"
+} else {
+	Write-Host "No files found to convert"
 }
 Read-Host "Press enter key to continue"
