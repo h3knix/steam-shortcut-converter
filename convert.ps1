@@ -27,7 +27,7 @@ Foreach-Object {
 	Write-Host "Converting" $_.FullName
 	Write-Host "To" $path
 	
-    $content = Get-Content $_.FullName
+	$content = Get-Content $_.FullName
 	Move-Item $_.FullName ($convertedpath + $origname)
 	
 	$url = $content | Where-Object {$_ -match 'URL'}
