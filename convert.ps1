@@ -1,5 +1,5 @@
 # created by Michael Vandenberghe ( https://github.com/h3knix/ )
-# find this on github ( https://github.com/h3knix/steamshortcutconverter/ )
+# find this on github ( https://github.com/h3knix/steam-shortcut-converter/ )
 
 $basepath = $env:USERPROFILE +"\Desktop\"
 
